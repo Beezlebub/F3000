@@ -1,0 +1,1 @@
+"c:\projects\LOVE\love.exe" "%cd%"

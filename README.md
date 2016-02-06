@@ -11,22 +11,26 @@ Most if not all of the art assets will be replaced.
 	SPACE	--  Shoot	
 	TAB 	--	Debug
 
+	Weapons(temporary)
 	1		-- 	Select Bullets
 	2 		--	Select Missles
 
 ### Credit
-[Assets](http://github.com/fliattitude) by fliattitude
+[Main Assets](http://github.com/fliattitude) by fliattitude
 
 [Free Assets](http://opengameart.org/content/2d-space-shooter-assets) by Pudman
 
 [Love2D Logo](http://www.akajag.com/wp-content/uploads/2015/09/) by Jag
+
+[SFXR generator](http://www.drpetter.se/project_sfxr.html) by Tomas Pettersson
+
 
 **More to be added as development progresses
 
 ### License
 
 The MIT License (MIT)
-Copyright (c) 2016 Andrew Dean
+Copyright (c) 2010 Bruno Garcia
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

@@ -6,12 +6,14 @@ local MENU 		= require 'lib.states.menu'
 local PAUSE 	= require 'lib.states.pause'
 local GAME 		= require 'lib.states.game'
 local OPTIONS 	= require 'lib.states.options'
-HINT 		= require 'lib.mod.hint'
+HINT 			= require 'lib.mod.hint'
+
 
 states = {}
 
-local active = "menu"
+active = "menu"
 prev = "nil"
+
 _playAudio = true
 _showDebug = false
 
@@ -22,9 +24,9 @@ font48 = love.graphics.newFont("lib/mod/HelvetiPixel.ttf", 48)
 
 function love.load()
 	states = {
-		menu = MENU.init(),
-		pause = PAUSE.init(),
-		game = GAME.init(),
+		menu 	= MENU.init(),
+		pause 	= PAUSE.init(),
+		game 	= GAME.init(),
 		options = OPTIONS.init()
 	}
 
@@ -57,4 +59,13 @@ function stateActivate(new)
     prev = active
     active = new
     states[active].activate()
+end
+
+function playSFX(audio)
+	if audio:isStopped() then 
+		love.audio.play(audio)
+	else
+		love.audio.stop()
+		love.audio.play(audio)
+	end
 end

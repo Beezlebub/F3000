@@ -11,20 +11,20 @@ local modes = {
 
   debug = {
     id    = "debug",  
-    color = {200,125,125}, 
-    bg    = {80,80,80}
+    color = {255,255,125}, 
+    bg    = {125,125,125}
   },
 
   warn = {
     id    = "warn",   
-    color = {255,255,100}, 
-    bg    = {130,130,130}
+    color = {255,0,0}, 
+    bg    = {50,50,50}
   },
 
   err = {
     id    = "err",    
-    color = {50,50,50}, 
-    bg    = {255,130,130}
+    color = {255,50,50}, 
+    bg    = {50,50,50}
   }
 }
   
@@ -46,8 +46,8 @@ end
 function hint.update(dt)
   for i, msg in ipairs(hint.msgQueue) do
     msg.timer = msg.timer - 1 * dt
-    if msg.timer <= 1 then
-        msg.alpha = msg.alpha - (1/255) * dt
+    if msg.timer < 2 then
+        msg.alpha = msg.alpha - (125 * dt)
 
         if msg.timer <= 0 then
           table.remove(hint.msgQueue, i)
@@ -66,7 +66,7 @@ function hint.draw()
     
     LG.setColor(0,0,0, msg.alpha)
     LG.rectangle("line", tx, ty, tw, 40)
-    LG.setColor(msg.bg)
+    LG.setColor(msg.bg, msg.alpha)
     LG.rectangle("fill", tx, ty, tw, 40)
 
     LG.setColor(msg.color, msg.alpha)

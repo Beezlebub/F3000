@@ -1,9 +1,9 @@
-local player = 		require 'lib.ent.player'
-local bullet = 		require 'lib.ent.bullet'
-local missle = 		require 'lib.ent.missle'
-local planet = 		require 'lib.ent.planet'
-local smoke = 		require 'lib.ent.smoke'
-local explosion = 	require 'lib.ent.explosion'
+local player 		= require 'lib.ent.player'
+local bullet 		= require 'lib.ent.bullet'
+local missle 		= require 'lib.ent.missle'
+local planet 		= require 'lib.ent.planet'
+local smoke 		= require 'lib.ent.smoke'
+local explosion 	= require 'lib.ent.explosion'
 
 local ecs = {}
 
@@ -15,16 +15,27 @@ function ecs.new(model, x, y, vx, vy, rot)
 	
 	if model == "player" then
 		self = player.inherit(x, y)
+
 	elseif model == "bullet" then
 		self = bullet.inherit(x, y, vx, vy, rot)
+
 	elseif model == "missle" then
 		self = missle.inherit(x, y, vx, vy, rot)
+		playSFX(self.sfx)
+		
 	elseif model == "planet" then
 		self = planet.inherit(x, y)
+
 	elseif model == "smoke" then
 		self = smoke.inherit(x, y)
+
 	elseif model == "explosion" then
 		self = explosion.inherit(x, y)
+		playSFX(self.sfx)
+	end
+
+	if self.action.sound then
+		
 	end
 
 	return self
@@ -60,10 +71,6 @@ function ecs.update(dt)
 			PLAYER:set("canShootTimer", 3)
 		end
 	end
-end
-
-function ecs.draw()
-
 end
 
 return ecs

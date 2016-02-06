@@ -113,8 +113,7 @@ function state.init()
             HINT.new("Use [WASD] to control.", "info", 10)
             HINT.new("Use [SPACE] to shoot.", "info", 10)
             HINT.new("Use [TAB] to toggle debug.", "debug", 5)
-
-
+            
         elseif mx < self.btnOptions.x + self.btnOptions.w and self.btnOptions.x < mx and my < self.btnOptions.y + self.btnOptions.h and self.btnOptions.y < my then
             stateActivate("options")
         end

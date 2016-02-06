@@ -5,6 +5,7 @@ function player.inherit(x, y)
 		imgCoast = LG.newImage('lib/img/starterShipCoast.png'),
 		imgBoost = LG.newImage('lib/img/starterShipBoost.png'),
 		useImg = "imgCoast",
+		sfx = love.audio.newSource("lib/sfx/boost.mp3", "stream"),
 		x = x,
 		y = y,
 		vx = 0,
@@ -41,6 +42,10 @@ function player.inherit(x, y)
 		}
 	}
 
+
+	self.sfx:setVolume(.3)
+	self.sfx:isLooping(false)
+
 	self.w = self.imgCoast:getWidth()
 	self.h = self.imgCoast:getHeight()
 
@@ -57,15 +62,24 @@ function player.inherit(x, y)
 
 		local accel = self.force/self.mass
 		
+		if self.action.reverse then
+			self.vx = self.vx - math.sin(self.rot) * (accel/2) * dt
+			self.vy = self.vy - math.cos(self.rot) * (-accel/2) * dt
+		end
+
 		if self.action.thrust then
+			if self.sfx:isStopped() then 
+				self.sfx:play(self.sfx)
+			end
+
 			self.vx = self.vx + math.sin(self.rot) * accel * dt
 			self.vy = self.vy + math.cos(self.rot) * -accel * dt
 			self.useImg = "imgBoost"
 			self.action.smoke = true
-
-		elseif self.action.reverse then
-			self.vx = self.vx - math.sin(self.rot) * (accel/2) * dt
-			self.vy = self.vy - math.cos(self.rot) * (-accel/2) * dt
+		else
+			if not self.sfx:isStopped(self.sfx) then 
+				self.sfx:stop(self.sfx)
+			end
 		end
 	
 		if self.action.turnCCW then

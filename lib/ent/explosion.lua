@@ -3,6 +3,7 @@ local explosion = {}
 function explosion.inherit(x, y)
 	local self = {
 		--img = LG.newImage('lib/img/missle.png'),
+		sfx = love.audio.newSource("lib/sfx/explosion1.wav", "static"),
 		x = x,
 		y = y, 
 		r = 3,
@@ -17,6 +18,8 @@ function explosion.inherit(x, y)
 			smoke = true
 		}
 	}
+
+	self.sfx:setVolume(.5)
 
 	function self:update(dt)
 		self.lifeTime = self.lifeTime - 1 * dt

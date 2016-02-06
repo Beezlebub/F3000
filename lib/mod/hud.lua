@@ -1,6 +1,6 @@
 
 function hudLoad()
-	
+
 end
 
 function hudMsg(msg, mode, time)
